@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Wellness-inspired color palette */
+    --background: 30 40% 98%;
+    --foreground: 25 20% 25%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 25 20% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 20% 25%;
+
+    /* Soft teal - health, growth, wellness */
+    --primary: 160 70% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 160 60% 85%;
+
+    /* Warm peach - friendly, approachable */
+    --secondary: 20 90% 75%;
+    --secondary-foreground: 25 20% 25%;
+
+    /* Soft sage green */
+    --muted: 140 20% 92%;
+    --muted-foreground: 25 15% 45%;
+
+    /* Light coral accent */
+    --accent: 15 80% 80%;
+    --accent-foreground: 25 20% 25%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 140 15% 88%;
+    --input: 140 15% 88%;
+    --ring: 160 70% 45%;
+
+    --radius: 1rem;
+
+    /* Gradients */
+    --gradient-wellness: linear-gradient(135deg, hsl(160 70% 45%) 0%, hsl(140 60% 55%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(20 90% 75%) 0%, hsl(35 85% 70%) 100%);
+    --gradient-soft: linear-gradient(180deg, hsl(30 40% 98%) 0%, hsl(140 20% 96%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 2px 20px -5px hsl(160 70% 45% / 0.1);
+    --shadow-warm: 0 4px 30px -8px hsl(20 90% 75% / 0.2);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Hide scrollbar for carousel */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Scroll animation classes */
+.scroll-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-fade-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-fade-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-fade-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-fade-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.scroll-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered animation delays */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+
+/* Enhanced card hover */
+.card-enhanced {
+  background: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(140 20% 98%) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-wellness);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-enhanced:hover::before {
+  opacity: 1;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Initial page load animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
