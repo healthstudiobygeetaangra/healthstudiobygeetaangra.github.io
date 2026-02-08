@@ -15,6 +15,8 @@ import functionalMedicine from "@/assets/certificates/functional-medicine.jpeg";
 import fssaiRegistration from "@/assets/certificates/fssai-registration.jpeg";
 import fssaiAnnexure from "@/assets/certificates/fssai-annexure.jpeg";
 import lifestyleHealthCoaching from "@/assets/certificates/lifestyle-health-coaching.jpeg";
+import diabeticNutritionCertificate from "@/assets/certificates/Diabetic_Nutrition_certificate.jpeg";
+import healthyfyHealCertificate from "@/assets/certificates/Healthyfy_Heal_Certificate.jpeg";
 
 interface Certificate {
   id: number;
@@ -96,6 +98,22 @@ const certificates: Certificate[] = [
     issuer: "Yes2StayingFit",
     date: "August 2024",
     image: lifestyleHealthCoaching,
+    category: "health",
+  },
+  {
+    id: 10,
+    title: "Diabetic Nutrition",
+    issuer: "Be Medic Academy",
+    date: "February 2026",
+    image: diabeticNutritionCertificate,
+    category: "nutrition",
+  },
+  {
+    id: 11,
+    title: "Heal India",
+    issuer: "Skill India",
+    date: "February 2026",
+    image: healthyfyHealCertificate,
     category: "health",
   },
 ];
