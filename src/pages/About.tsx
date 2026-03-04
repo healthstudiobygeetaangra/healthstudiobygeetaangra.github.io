@@ -70,6 +70,7 @@ const About = () => {
                 </p>
                 <p>
                   At Health Studio by Geeta Angra, the approach goes beyond calorie counting. We focus on <span className="text-primary font-medium">gut health, hormonal balance, metabolic health</span>, and daily lifestyle habits that influence weight, energy, digestion, blood sugar control, and overall well-being.
+                  Our MPESS-based approach focuses on healing the root cause to bring long-lasting results.
                 </p>
               </div>
             </div>

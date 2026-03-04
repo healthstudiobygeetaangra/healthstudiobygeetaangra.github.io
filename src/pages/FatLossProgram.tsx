@@ -149,8 +149,13 @@ const FatLossProgram = () => {
                 <div className="text-center mb-6">
                   <h3 className="text-xl font-bold text-foreground mb-2">Basic</h3>
                   <p className="text-muted-foreground mb-4">6 Months Program</p>
-                  <div className="text-4xl font-bold text-primary">
-                    ₹36,000
+                  <div className="flex items-center justify-center gap-3">
+                    <span className="text-xl md:text-2xl font-semibold text-muted-foreground line-through">
+                      ₹50,000
+                    </span>
+                    <span className="text-4xl font-bold text-primary">
+                      ₹36,000
+                    </span>
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">One-time payment</p>
                 </div>
@@ -174,9 +179,14 @@ const FatLossProgram = () => {
                 </div>
                 <div className="text-center mb-6">
                   <h3 className="text-xl font-bold text-foreground mb-2">Advanced</h3>
-                  <p className="text-muted-foreground mb-4">8 Months Program</p>
-                  <div className="text-4xl font-bold text-primary">
-                    ₹48,000
+                  <p className="text-muted-foreground mb-4">12 Months Program</p>
+                  <div className="flex items-center justify-center gap-3">
+                    <span className="text-xl md:text-2xl font-semibold text-muted-foreground line-through">
+                      ₹98,000
+                    </span>
+                    <span className="text-4xl font-bold text-primary">
+                      ₹48,000
+                    </span>
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">One-time payment</p>
                 </div>
@@ -184,7 +194,7 @@ const FatLossProgram = () => {
                   variant="wellness"
                   size="lg"
                   className="w-full gap-2"
-                  onClick={() => handleEnrollClick("Sustainable Fat Loss - Advanced (8 Months)", "₹48,000")}
+                  onClick={() => handleEnrollClick("Sustainable Fat Loss - Advanced (12 Months)", "₹48,000")}
                 >
                   <MessageCircle className="w-5 h-5" />
                   Enroll Now

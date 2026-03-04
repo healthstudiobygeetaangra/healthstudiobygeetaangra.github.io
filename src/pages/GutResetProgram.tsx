@@ -252,8 +252,13 @@ const GutResetProgram = () => {
                     <span className="text-sm font-medium">30 Days</span>
                   </div>
                   <h3 className="text-xl font-bold text-foreground mb-2">🌿 Gut Reset Program</h3>
-                  <div className="text-4xl font-bold text-green-600 mb-1">
-                    ₹5,500
+                  <div className="flex items-center justify-center gap-3 mb-1">
+                    <span className="text-xl md:text-2xl font-semibold text-muted-foreground line-through">
+                      ₹12,000
+                    </span>
+                    <span className="text-4xl font-bold text-green-600">
+                      ₹5,500
+                    </span>
                   </div>
                   <p className="text-sm text-muted-foreground">One-time payment</p>
                 </div>
@@ -289,8 +294,13 @@ const GutResetProgram = () => {
                     <span className="text-sm font-medium">60 Days</span>
                   </div>
                   <h3 className="text-xl font-bold text-foreground mb-2">🌿 Gut Strengthen Program</h3>
-                  <div className="text-4xl font-bold text-green-600 mb-1">
-                    ₹12,000
+                  <div className="flex items-center justify-center gap-3 mb-1">
+                    <span className="text-xl md:text-2xl font-semibold text-muted-foreground line-through">
+                      ₹25,000
+                    </span>
+                    <span className="text-4xl font-bold text-green-600">
+                      ₹12,000
+                    </span>
                   </div>
                   <p className="text-sm text-muted-foreground">One-time payment</p>
                 </div>

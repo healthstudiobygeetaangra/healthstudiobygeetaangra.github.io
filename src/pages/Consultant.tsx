@@ -114,6 +114,7 @@ const Consultant = () => {
             <div className="space-y-4 text-foreground leading-relaxed mb-8">
               <p>
                 Today, my work is dedicated to helping women who feel frustrated, unheard, or exhausted by repeated failures with diets and workouts. At Health Studio by Geeta Angra, I offer a root-cause, science-backed, and deeply personalised approach to weight loss and overall well-being — combining modern nutrition with traditional wisdom and practical lifestyle guidance.
+                Our MPESS-based approach focuses on healing the root cause to bring long-lasting results.
               </p>
               <p className="font-medium text-primary">
                 ✨ My mission is to guide women toward lasting balance, confidence, and health — not through shortcuts, but through clarity, consistency, and compassion.
