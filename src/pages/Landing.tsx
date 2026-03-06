@@ -585,7 +585,7 @@ const Landing = () => {
                     </a>
 
                     <a 
-                      href="https://www.google.com/maps/place/Nishchay+Academy/@28.6402087,77.0785323,18.96z/data=!4m6!3m5!1s0x390d04933521078f:0x6a38b9cc124ccf1a!8m2!3d28.6402926!4d77.0795308!16s%2Fg%2F12hqlfgwl?authuser=0&entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                      href="https://maps.app.goo.gl/CGjpsRFy1aqVjk4r6?g_st=aw"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-4 p-3 rounded-xl bg-primary/5 hover:bg-primary/10 transition-all duration-300 group hover:-translate-y-1"

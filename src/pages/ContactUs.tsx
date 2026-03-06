@@ -165,7 +165,7 @@ const ContactUs = () => {
                 </a>
 
                 <a 
-                  href="https://www.google.com/maps/place/Nishchay+Academy/@28.6402087,77.0785323,18.96z/data=!4m6!3m5!1s0x390d04933521078f:0x6a38b9cc124ccf1a!8m2!3d28.6402926!4d77.0795308!16s%2Fg%2F12hqlfgwl?authuser=0&entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                  href="https://google.com/maps/place/Ground+Floor,+Health+Studio+by+Geeta+Angra,+Govt+School,+J+-+3A,+Guru+Virjanand+Marg,+opposite+G+Block,+Block+J,+Vikaspuri,+Delhi,+110018/@28.6402931,77.0793991,3a,75y,92.47h,78.27t/data=!3m5!1e1!3m3!1sj_UVMTESXDJyIH1axFdWLQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3Dj_UVMTESXDJyIH1axFdWLQ%26w%3D900%26h%3D600%26ll%3D0.0,0.0%26yaw%3D92.0%26pitch%3D12.0%26thumbfov%3D98%26cb_client%3Dgmm.iv.android!4m2!3m1!1s0x23d6d9a6da59abe3:0x94efce62f45d9703?utm_source=mstt_0&g_ep=CAESBjI2LjkuNhgAIIGBASqUASw5NDI2NzcyNyw5NDI5MjE5NSw5NDI5OTUzMiwxMDA3OTY0OTgsMTAwNzk2NTM1LDk0Mjg0NDc1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDc5MTQ4MywxMDA3OTYxOTNCAklO&skid=372c3f55-f396-4bcb-9696-a31757a165fe&g_st=aw"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-4 p-4 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-all duration-300 group hover:shadow-md hover:-translate-y-1"
@@ -286,7 +286,7 @@ const ContactUs = () => {
             </h2>
             <div className="rounded-3xl overflow-hidden shadow-soft">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d875.6168693366!2d77.07853234!3d28.64020873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04933521078f%3A0x6a38b9cc124ccf1a!2sNishchay%20Academy!5e0!3m2!1sen!2sin!4v1234567890"
+                src="https://www.google.com/maps?q=Ground+Floor,+Health+Studio+by+Geeta+Angra,+Govt+School,+J+-+3A,+Guru+Virjanand+Marg,+opposite+G+Block,+Block+J,+Vikaspuri,+Delhi,+110018&output=embed"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}
