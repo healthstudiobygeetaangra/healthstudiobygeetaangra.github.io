@@ -16,7 +16,7 @@ import fssaiRegistration from "@/assets/certificates/fssai-registration.jpeg";
 import fssaiAnnexure from "@/assets/certificates/fssai-annexure.jpeg";
 import lifestyleHealthCoaching from "@/assets/certificates/lifestyle-health-coaching.jpeg";
 import diabeticNutritionCertificate from "@/assets/certificates/Diabetic_Nutrition_certificate.jpeg";
-import healthyfyHealCertificate from "@/assets/certificates/Healthyfy_Heal_Certificate.jpeg";
+import healIndiaUpdated from "@/assets/certificates/heal-india-updated.jpeg";
 
 interface Certificate {
   id: number;
@@ -113,7 +113,7 @@ const certificates: Certificate[] = [
     title: "Heal India",
     issuer: "Skill India",
     date: "February 2026",
-    image: healthyfyHealCertificate,
+    image: healIndiaUpdated,
     category: "health",
   },
 ];
@@ -137,7 +137,7 @@ const Certificates = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-background/80 backdrop-blur-sm border-b sticky top-0 z-40">
+      <header className="bg-background/80 backdrop-blur-sm border-b">
         <div className="container mx-auto px-4 py-4">
           <Button 
             variant="ghost" 
