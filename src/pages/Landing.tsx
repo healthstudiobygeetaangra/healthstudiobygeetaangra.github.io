@@ -345,19 +345,6 @@ const Landing = () => {
   const [leadDialogOpen, setLeadDialogOpen] = useState(false);
   const [leadActionType, setLeadActionType] = useState<"chat" | "book_free" | "book_paid">("chat");
 
-  // Handle hash-based navigation after page load
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash === '#contact' || hash === '#contact-form') {
-      setTimeout(() => {
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-          contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 100);
-    }
-  }, []);
-
   const navLinks = [
     { href: "#about", label: "About" },
     { href: "#services", label: "Services" },
@@ -419,12 +406,7 @@ const Landing = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         setMobileMenuOpen(false);
-                        setTimeout(() => {
-                          const element = document.querySelector(link.href);
-                          if (element) {
-                            element.scrollIntoView({ behavior: 'smooth' });
-                          }
-                        }, 300);
+                        window.location.hash = link.href;
                       }}
                       className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 border-b border-border/50"
                     >
