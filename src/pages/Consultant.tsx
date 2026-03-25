@@ -53,9 +53,10 @@ const Consultant = () => {
             </div>
             <div className="w-full md:w-3/5 text-center md:text-left">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2">
-                Clinical Nutritionist Geeta Angra
+                <span className="block text-left ml-10">Geeta Angra</span>
+                <span className="block text-left text-2xl md:text-3xl lg:text-4xl">(Clinical Nutritionist)</span>
               </h1>
-              <p className="text-lg md:text-xl text-primary font-semibold mb-6">
+              <p className="text-lg md:text-xl text-primary font-semibold mb-6 text-left">
                 Gut & Hormonal Health Nutritionist | Certified Diabetic Educator
               </p>
               <blockquote className="text-lg md:text-xl text-muted-foreground italic mb-8 border-l-4 border-primary pl-4">
