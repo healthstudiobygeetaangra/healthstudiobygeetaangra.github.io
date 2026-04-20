@@ -80,6 +80,45 @@ export type Database = {
         }
         Relationships: []
       }
+      webinar_events: {
+        Row: {
+          banner_image: string | null
+          created_at: string | null
+          duration: string | null
+          id: string
+          is_active: boolean | null
+          meeting_link: string | null
+          speaker_name: string | null
+          title: string | null
+          webinar_date: string | null
+          webinar_time: string | null
+        }
+        Insert: {
+          banner_image?: string | null
+          created_at?: string | null
+          duration?: string | null
+          id?: string
+          is_active?: boolean | null
+          meeting_link?: string | null
+          speaker_name?: string | null
+          title?: string | null
+          webinar_date?: string | null
+          webinar_time?: string | null
+        }
+        Update: {
+          banner_image?: string | null
+          created_at?: string | null
+          duration?: string | null
+          id?: string
+          is_active?: boolean | null
+          meeting_link?: string | null
+          speaker_name?: string | null
+          title?: string | null
+          webinar_date?: string | null
+          webinar_time?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string

@@ -1,11 +1,32 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
 const BookAppointment = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = useMemo(() => new URLSearchParams(location.search).get("from"), [location.search]);
+
+  useEffect(() => {
+    console.log("Consultation page source:", from);
+  }, [from]);
+
+  const handleBack = () => {
+    if (from === "gut-reset-webinar") {
+      navigate("/gut-reset-webinar");
+      return;
+    }
+
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/gut-reset-webinar");
+  };
 
   return (
     <div className="min-h-screen bg-gradient-soft flex flex-col">
@@ -13,7 +34,7 @@ const BookAppointment = () => {
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => navigate('/')}
+        onClick={handleBack}
         className="absolute top-4 left-4 gap-2 z-10"
       >
         <ArrowLeft className="h-4 w-4" />

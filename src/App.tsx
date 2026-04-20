@@ -21,6 +21,9 @@ import Disclaimer from "./pages/Disclaimer";
 import RefundPolicy from "./pages/RefundPolicy";
 import FatLossProgram from "./pages/FatLossProgram";
 import GutResetProgram from "./pages/GutResetProgram";
+import GutResetWebinar from "./pages/GutResetWebinar";
+import GutResetWebinarEnroll from "./pages/GutResetWebinarEnroll";
+import GutResetWebinarSuccess from "./pages/GutResetWebinarSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +53,10 @@ const App = () => (
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/fat-loss-program" element={<FatLossProgram />} />
           <Route path="/gut-reset-program" element={<GutResetProgram />} />
+          <Route path="/gut-reset-webinar" element={<GutResetWebinar />} />
+          <Route path="/gut-reset-webinar/enroll" element={<GutResetWebinarEnroll />} />
+          <Route path="/gut-reset-webinar/payment" element={<GutResetWebinarEnroll />} />
+          <Route path="/gut-reset-webinar/success" element={<GutResetWebinarSuccess />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
