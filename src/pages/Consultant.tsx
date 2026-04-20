@@ -1,16 +1,36 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import consultantPhoto from "@/assets/consultant-photo.jpg";
 import { Award, BookOpen, Heart, Star, ArrowLeft, CheckCircle, Users, Calendar, X, Sparkles, MessageCircle, ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
 import LeadCaptureDialog from "@/components/LeadCaptureDialog";
 
 const Consultant = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [leadDialogOpen, setLeadDialogOpen] = useState(false);
+  const from = useMemo(() => new URLSearchParams(location.search).get("from"), [location.search]);
+
+  useEffect(() => {
+    console.log("Consultation page source:", from);
+  }, [from]);
+
+  const handleBack = () => {
+    if (from === "gut-reset-webinar") {
+      navigate("/gut-reset-webinar");
+      return;
+    }
+
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/gut-reset-webinar");
+  };
 
   const handleBookConsultation = () => {
     setLeadDialogOpen(true);
@@ -33,7 +53,7 @@ const Consultant = () => {
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => navigate(-1)}
+        onClick={handleBack}
         className="absolute top-4 left-4 gap-2 z-10"
       >
         <ArrowLeft className="h-4 w-4" />

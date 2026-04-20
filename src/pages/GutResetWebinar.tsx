@@ -11,6 +11,7 @@ import ProgramIncludes from "@/components/gut-reset/ProgramIncludes";
 import StickyCTA from "@/components/gut-reset/StickyCTA";
 import SuccessStories from "@/components/gut-reset/SuccessStories";
 import SymptomsSection from "@/components/gut-reset/SymptomsSection";
+import WellnessHighlightsSection from "@/components/gut-reset/WellnessHighlightsSection";
 import WebinarAccessCards from "@/components/gut-reset/WebinarAccessCards";
 import WhoIsThisFor from "@/components/gut-reset/WhoIsThisFor";
 import WhyGutMatters from "@/components/gut-reset/WhyGutMatters";
@@ -102,9 +103,17 @@ const GutResetWebinar = () => {
             </motion.section>
             <FAQSection />
             <EnrollmentForm />
-            <FinalCTA onClick={goToEnrollmentPage} />
           </div>
         </div>
+
+        <section className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-4 xl:items-stretch">
+          <div className="xl:col-span-3">
+            <WellnessHighlightsSection />
+          </div>
+          <div className="xl:col-span-1 flex">
+            <FinalCTA onClick={goToEnrollmentPage} className="h-full w-full" />
+          </div>
+        </section>
       </main>
 
       <Footer />

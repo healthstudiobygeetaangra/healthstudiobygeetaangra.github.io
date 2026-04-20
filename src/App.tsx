@@ -55,6 +55,7 @@ const App = () => (
           <Route path="/gut-reset-program" element={<GutResetProgram />} />
           <Route path="/gut-reset-webinar" element={<GutResetWebinar />} />
           <Route path="/gut-reset-webinar/enroll" element={<GutResetWebinarEnroll />} />
+          <Route path="/gut-reset-webinar/payment" element={<GutResetWebinarEnroll />} />
           <Route path="/gut-reset-webinar/success" element={<GutResetWebinarSuccess />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

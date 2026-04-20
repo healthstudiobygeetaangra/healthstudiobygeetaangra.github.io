@@ -1,50 +1,28 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, CircleHelp, HeartPulse, Leaf, Loader2 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import plateDecoration from "@/assets/enroll-plate-decoration.jpg";
 import plantsDecoration from "@/assets/enroll-plants-decoration.jpg";
 import { webinarPrice } from "@/data/gutResetWebinar";
+import { startWebinarPaymentFlow } from "@/lib/webinarPaymentFlow";
+import { cn } from "@/lib/utils";
+import {
+  createWebinarEnrollmentFormData,
+  initialWebinarEnrollmentTouched,
+  isWebinarEnrollmentFormSubmittable,
+  sanitizePhoneNumber,
+  type WebinarEnrollmentField,
+  type WebinarEnrollmentFormData,
+  type WebinarEnrollmentTouched,
+  validateWebinarEnrollmentForm,
+  type WebinarEnrollmentErrors,
+} from "@/lib/webinarEnrollmentValidation";
 import { fetchActiveWebinar, type WebinarEvent } from "@/services/webinarService";
 
-declare global {
-  interface Window {
-    Razorpay?: new (options: Record<string, unknown>) => {
-      open: () => void;
-      on: (event: string, handler: (response: Record<string, unknown>) => void) => void;
-    };
-  }
+interface EnrollLocationState {
+  prefill?: Partial<WebinarEnrollmentFormData>;
 }
-
-interface EnrollmentFormData {
-  name: string;
-  email: string;
-  phone: string;
-  city: string;
-  healthGoal: string;
-}
-
-const initialFormData: EnrollmentFormData = {
-  name: "",
-  email: "",
-  phone: "",
-  city: "",
-  healthGoal: "",
-};
-
-const loadRazorpayScript = () =>
-  new Promise<boolean>((resolve) => {
-    if (window.Razorpay) {
-      resolve(true);
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-    document.body.appendChild(script);
-  });
 
 const parseTimeTo24Hour = (timeText: string) => {
   const clean = timeText.replace(/IST/gi, "").trim();
@@ -113,16 +91,55 @@ const GutResetWebinarEnroll = () => {
   // Use `npm run vercel-dev` to run frontend + backend together.
   // Backend secret env vars use process.env without VITE_, while frontend-safe vars use VITE_.
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<EnrollmentFormData>(initialFormData);
+  const location = useLocation();
+  const locationState = location.state as EnrollLocationState | null;
+  const [formData, setFormData] = useState<WebinarEnrollmentFormData>(() =>
+    createWebinarEnrollmentFormData(locationState?.prefill),
+  );
+  const [fieldErrors, setFieldErrors] = useState(validateWebinarEnrollmentForm(formData));
+  const [touched, setTouched] = useState<WebinarEnrollmentTouched>(initialWebinarEnrollmentTouched);
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [debugWhatsappRedirectUrl, setDebugWhatsappRedirectUrl] = useState<string | null>(null);
   const [webinar, setWebinar] = useState<WebinarEvent | null>(null);
   const [isWebinarLoading, setIsWebinarLoading] = useState(true);
   const [countdownText, setCountdownText] = useState("Starts in: --:--:--");
 
   const isDisabled = useMemo(
-    () => loading || Object.values(formData).some((value) => !value.trim()),
+    () => loading || !isWebinarEnrollmentFormSubmittable(formData),
     [formData, loading],
   );
+
+  const markTouched = (field: WebinarEnrollmentField) =>
+    setTouched((previous) => ({
+      ...previous,
+      [field]: true,
+    }));
+
+  const updateFormData = (field: WebinarEnrollmentField, value: string) => {
+    const nextFormData = {
+      ...formData,
+      [field]: field === "phone" ? sanitizePhoneNumber(value) : value,
+    };
+    setFormData(nextFormData);
+    markTouched(field);
+    setFieldErrors(validateWebinarEnrollmentForm(nextFormData));
+  };
+
+  const applyErrors = (errors: WebinarEnrollmentErrors) => {
+    setFieldErrors(errors);
+  };
+
+  const getInputStateClassName = (field: WebinarEnrollmentField) => {
+    const shouldShowState = touched[field] || hasAttemptedSubmit;
+    if (!shouldShowState) {
+      return "";
+    }
+    if (fieldErrors[field]) {
+      return "border-red-500 focus:border-red-500 focus:ring-red-500/20";
+    }
+    return "border-green-500 focus:border-green-500 focus:ring-green-500/20";
+  };
 
   useEffect(() => {
     const loadWebinar = async () => {
@@ -157,126 +174,19 @@ const GutResetWebinarEnroll = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Reserve button clicked");
-    setLoading(true);
-
-    try {
-      const scriptLoaded = await loadRazorpayScript();
-      if (!scriptLoaded) {
-        console.error("Razorpay SDK failed to load");
-        throw new Error("Unable to load payment gateway. Please try again.");
-      }
-      if (!window.Razorpay) {
-        console.error("Razorpay SDK failed to load");
-        throw new Error("Unable to load payment gateway. Please try again.");
-      }
-
-      const orderResponse = await fetch("/api/create-webinar-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const orderRawResponse = await orderResponse.text();
-      let orderData: Record<string, unknown>;
-      try {
-        orderData = JSON.parse(orderRawResponse);
-      } catch {
-        console.error("API response is not valid JSON", orderRawResponse);
-        throw new Error("Unexpected API response from create order endpoint.");
-      }
-      console.log("API response", { status: orderResponse.status, data: orderData });
-
-      if (!orderResponse.ok) {
-        const errorMessage =
-          typeof orderData.error === "string"
-            ? orderData.error
-            : "Could not create payment order.";
-        throw new Error(errorMessage);
-      }
-
-      const orderId = typeof orderData.orderId === "string" ? orderData.orderId : "";
-      const amount = typeof orderData.amount === "number" ? orderData.amount : 0;
-      const currency = typeof orderData.currency === "string" ? orderData.currency : "";
-      const keyId =
-        (import.meta.env.VITE_RAZORPAY_KEY_ID as string | undefined) ||
-        (typeof orderData.keyId === "string" ? orderData.keyId : "");
-      const leadId = typeof orderData.leadId === "string" ? orderData.leadId : "";
-
-      console.log("orderId", orderId);
-      console.log("amount", amount);
-      console.log("keyId", keyId);
-
-      if (!orderId || !amount || !currency || !keyId) {
-        throw new Error("Missing required Razorpay order payload.");
-      }
-
-      const options = {
-        key: keyId,
-        amount,
-        currency,
-        name: "Health Studio by Geeta Angra",
-        description: "Gut Reset Webinar Access",
-        order_id: orderId,
-        prefill: {
-          name: formData.name,
-          email: formData.email,
-          contact: formData.phone,
-        },
-        theme: {
-          color: "#49C47D",
-        },
-        handler: async (response: Record<string, string>) => {
-          try {
-            const verifyResponse = await fetch("/api/verify-webinar-payment", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                leadId,
-                ...response,
-              }),
-            });
-
-            if (!verifyResponse.ok) {
-              const verifyError = await verifyResponse.json();
-              throw new Error(verifyError.error ?? "Payment verification failed.");
-            }
-
-            navigate("/gut-reset-webinar/success");
-          } catch (verifyError) {
-            const message =
-              verifyError instanceof Error ? verifyError.message : "Payment verification failed.";
-            alert(message);
-          } finally {
-            setLoading(false);
-          }
-        },
-        modal: {
-          ondismiss: () => {
-            console.log("Razorpay modal closed");
-            setLoading(false);
-          },
-        },
-      };
-      console.log("Razorpay options", options);
-
-      if (!window.Razorpay) {
-        console.error("Razorpay SDK failed to load");
-        setLoading(false);
-        return;
-      }
-      const razorpay = new window.Razorpay(options);
-      razorpay.on("payment.failed", (response) => {
-        console.error("Payment failed", (response as { error?: unknown }).error);
-      });
-
-      console.log("Opening Razorpay modal");
-      razorpay.open();
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Payment flow failed.";
-      alert(message);
-      setLoading(false);
+    setHasAttemptedSubmit(true);
+    const errors = validateWebinarEnrollmentForm(formData);
+    applyErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      return;
     }
+    await startWebinarPaymentFlow({
+      formData,
+      onPaymentSuccess: () => navigate("/gut-reset-webinar/success"),
+      onProcessingChange: setLoading,
+      onError: (message) => alert(message),
+      onWhatsappRedirectUrlChange: setDebugWhatsappRedirectUrl,
+    });
   };
 
   return (
@@ -403,24 +313,31 @@ const GutResetWebinarEnroll = () => {
                     { key: "email", label: "EMAIL", type: "email", placeholder: "Email" },
                     { key: "phone", label: "PHONE NUMBER", type: "tel", placeholder: "Phone Number" },
                     { key: "city", label: "CITY", type: "text", placeholder: "City" },
-                  ].map((field) => (
-                    <label key={field.key} className="block space-y-1.5">
-                      <span className="text-sm font-semibold tracking-wide text-[#4f4943]">{field.label}</span>
-                      <input
-                        required
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        value={formData[field.key as keyof EnrollmentFormData]}
-                        onChange={(event) =>
-                          setFormData((previous) => ({
-                            ...previous,
-                            [field.key]: event.target.value,
-                          }))
-                        }
-                        className={fieldStyles}
-                      />
-                    </label>
-                  ))}
+                  ].map((field) => {
+                    const fieldKey = field.key as WebinarEnrollmentField;
+                    const shouldShowError = (touched[fieldKey] || hasAttemptedSubmit) && !!fieldErrors[fieldKey];
+                    return (
+                      <label key={field.key} className="block space-y-1.5">
+                        <span className="text-sm font-semibold tracking-wide text-[#4f4943]">{field.label}</span>
+                        <input
+                          required
+                          type={field.type}
+                          inputMode={fieldKey === "phone" ? "numeric" : undefined}
+                          pattern={fieldKey === "phone" ? "\\d*" : undefined}
+                          maxLength={fieldKey === "phone" ? 10 : undefined}
+                          placeholder={field.placeholder}
+                          value={formData[fieldKey]}
+                          onChange={(event) => updateFormData(fieldKey, event.target.value)}
+                          onBlur={() => {
+                            markTouched(fieldKey);
+                            setFieldErrors(validateWebinarEnrollmentForm(formData));
+                          }}
+                          className={cn(fieldStyles, getInputStateClassName(fieldKey))}
+                        />
+                        {shouldShowError ? <p className="text-xs text-red-600">{fieldErrors[fieldKey]}</p> : null}
+                      </label>
+                    );
+                  })}
                 </div>
 
                 <label className="block space-y-1.5">
@@ -430,14 +347,19 @@ const GutResetWebinarEnroll = () => {
                     placeholder="Health Goal"
                     rows={4}
                     value={formData.healthGoal}
-                    onChange={(event) =>
-                      setFormData((previous) => ({
-                        ...previous,
-                        healthGoal: event.target.value,
-                      }))
-                    }
-                    className="w-full rounded-2xl border border-[#E7E1D8] bg-white px-4 py-4 text-base text-[#2F2B28] shadow-[0_4px_14px_rgba(47,43,40,0.06)] outline-none transition-all duration-300 placeholder:text-[#8B847B] hover:border-[#d8cdbf] focus:border-[#54D68C] focus:ring-4 focus:ring-[#54D68C]/15"
+                    onChange={(event) => updateFormData("healthGoal", event.target.value)}
+                    onBlur={() => {
+                      markTouched("healthGoal");
+                      setFieldErrors(validateWebinarEnrollmentForm(formData));
+                    }}
+                    className={cn(
+                      "w-full rounded-2xl border border-[#E7E1D8] bg-white px-4 py-4 text-base text-[#2F2B28] shadow-[0_4px_14px_rgba(47,43,40,0.06)] outline-none transition-all duration-300 placeholder:text-[#8B847B] hover:border-[#d8cdbf] focus:border-[#54D68C] focus:ring-4 focus:ring-[#54D68C]/15",
+                      getInputStateClassName("healthGoal"),
+                    )}
                   />
+                  {(touched.healthGoal || hasAttemptedSubmit) && fieldErrors.healthGoal ? (
+                    <p className="text-xs text-red-600">{fieldErrors.healthGoal}</p>
+                  ) : null}
                 </label>
               </form>
             </div>
@@ -481,11 +403,22 @@ const GutResetWebinarEnroll = () => {
                   type="submit"
                   form="enroll-webinar-form"
                   disabled={isDisabled}
-                  className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#54D68C] to-[#49C47D] px-6 py-4 text-xl font-semibold text-white shadow-[0_12px_22px_rgba(73,196,125,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_26px_rgba(73,196,125,0.4)] disabled:cursor-not-allowed disabled:from-[#91dfb4] disabled:to-[#91dfb4]"
+                  className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#54D68C] to-[#49C47D] px-6 py-4 text-xl font-semibold text-white shadow-[0_12px_22px_rgba(73,196,125,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_26px_rgba(73,196,125,0.4)] disabled:pointer-events-none disabled:cursor-not-allowed disabled:from-[#91dfb4] disabled:to-[#91dfb4] disabled:opacity-60"
                 >
                   {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : null}
                   Reserve Now – ₹{webinarPrice}
                 </button>
+
+                {debugWhatsappRedirectUrl ? (
+                  <a
+                    href={debugWhatsappRedirectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 bg-green-500 px-4 py-2 text-white rounded inline-flex w-full items-center justify-center"
+                  >
+                    Open WhatsApp
+                  </a>
+                ) : null}
               </motion.aside>
             </div>
           </div>

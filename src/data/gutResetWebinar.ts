@@ -45,6 +45,16 @@ export interface SuccessStoryItem {
   result: string;
 }
 
+export interface AchievementItem {
+  title: string;
+  icon: "sun" | "sprout" | "clock-3";
+}
+
+export interface TestimonialQuoteItem {
+  quote: string;
+  name: string;
+}
+
 export const trustBadges: TrustBadgeItem[] = [
   { label: "500+ Women Guided", icon: "users" },
   { label: "Certified Gut & Hormonal Health Expert", icon: "badge-check" },
@@ -195,4 +205,17 @@ export const successStories: SuccessStoryItem[] = [
     quote: "My acidity dropped and my sugar cravings reduced after following the gut reset structure.",
     result: "Better digestion + stable cravings",
   },
+];
+
+export const whatYoullAchieve: AchievementItem[] = [
+  { title: "Sustainable Energy", icon: "sun" },
+  { title: "Regular & Healthy Digestion", icon: "sprout" },
+  { title: "Mental Clarity & Balance", icon: "clock-3" },
+];
+
+export const webinarTestimonials: TestimonialQuoteItem[] = [
+  { quote: "This webinar transformed my life!", name: "Sarah M." },
+  { quote: "I finally understand my body.", name: "Rahul K." },
+  { quote: "The tools are so simple and effective.", name: "Aisha S." },
+  { quote: "My bloating reduced within weeks.", name: "Priya R." },
 ];
