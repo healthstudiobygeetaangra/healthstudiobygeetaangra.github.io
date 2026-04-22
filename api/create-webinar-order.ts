@@ -119,12 +119,12 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
     return;
   }
 
-  let order: { id: string; amount: number; currency: string };
+  let orderId = "";
   try {
     const receipt = `lead_${lead.id.slice(0, 8)}`;
     console.log("Using Razorpay receipt", receipt);
 
-    order = await razorpay.orders.create({
+    const order = await razorpay.orders.create({
       amount: WEBINAR_AMOUNT_PAISE,
       currency: "INR",
       receipt,
@@ -133,6 +133,7 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
         email,
       },
     });
+    orderId = order.id;
     console.log("Razorpay order response", order);
   } catch (error) {
     console.error("Razorpay order creation failed", error);
@@ -160,7 +161,7 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
   res.status(200).json({
     success: true,
     leadId: lead.id,
-    orderId: order.id,
+    orderId,
     amount: WEBINAR_AMOUNT_PAISE,
     currency: "INR",
     keyId: razorpayKeyId,
