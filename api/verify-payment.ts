@@ -1,1 +1,1 @@
-export { default } from "./_shared/verifyPaymentHandler";
+export { default } from "./_shared/verifyPaymentHandler.js";
