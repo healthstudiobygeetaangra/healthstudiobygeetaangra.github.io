@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-wellness-new.png";
-import logo from "@/assets/logo.png";
 import consultantPhoto from "@/assets/consultant-photo.jpg";
 import { Heart, Target, Users, Award, Mail, Phone, MapPin, ArrowRight, Menu, Sparkles, Zap, Moon, Activity, Flame, Brain, Scale, Send, MessageCircle } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import BrandLogo from "@/components/BrandLogo";
 import { cn } from "@/lib/utils";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -396,7 +396,7 @@ const Landing = () => {
               </SheetTrigger>
               <SheetContent side="left" className="w-[280px] p-6">
                 <div className="flex items-center gap-2 mb-8">
-                  <img src={logo} alt="HealthStudio" className="h-12" />
+                  <BrandLogo sizeClassName="h-10 sm:h-12" />
                 </div>
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
@@ -430,7 +430,7 @@ const Landing = () => {
             </Sheet>
 
             {/* Logo */}
-            <img src={logo} alt="HealthStudio by Geeta Angra" className="h-16 md:h-24" />
+            <BrandLogo sizeClassName="h-10 sm:h-12 md:h-[60px]" />
           </div>
           
           {/* Desktop Navigation Links */}

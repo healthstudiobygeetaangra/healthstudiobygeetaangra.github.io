@@ -4,8 +4,8 @@ import { ArrowLeft, Mail, Phone, MapPin, Clock, Send, Leaf, Heart, Sparkles } fr
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 import Footer from "@/components/Footer";
-import logo from "@/assets/logo.png";
 import ContactForm from "@/components/ContactForm";
+import BrandLogo from "@/components/BrandLogo";
 
 const ContactUs = () => {
   const navigate = useNavigate();
@@ -114,10 +114,9 @@ const ContactUs = () => {
         </div>
 
         <div className={`container mx-auto px-4 relative z-10 text-center scroll-fade-up ${heroAnimation.isVisible ? "visible" : ""}`}>
-          <img 
-            src={logo} 
-            alt="Health Studio by Geeta Angra" 
-            className="h-24 mx-auto mb-8 drop-shadow-lg hover:scale-105 transition-transform duration-300" 
+          <BrandLogo
+            sizeClassName="h-10 sm:h-12 md:h-[60px]"
+            className="mx-auto mb-8 hover:scale-105 transition-transform duration-300"
           />
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
             Let's Start Your
