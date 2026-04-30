@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import logo from "@/assets/logo.png";
 import { Mail, Phone, MapPin } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
 
 const Footer = () => {
   return (
@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1.5fr_1fr] gap-8">
           {/* Column 1 - Brand */}
           <div className="space-y-4">
-            <img src={logo} alt="HealthStudio by Geeta Angra" className="h-16" />
+            <BrandLogo sizeClassName="h-10 md:h-[50px]" />
             <p className="text-muted-foreground text-sm">
               When your body aligns with healthy living, your life begins to bloom again.
             </p>
