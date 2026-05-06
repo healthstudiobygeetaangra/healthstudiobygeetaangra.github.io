@@ -3,15 +3,18 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import successStoryTileBg from "@/assets/Success_Story__Image_tile.png";
 import whatYouWillAchieveBg from "@/assets/What_you_will_acheive.png";
-import { webinarTestimonials } from "@/data/gutResetWebinar";
+import { websiteTestimonials } from "@/data/websiteTestimonials";
+import { newTestimonials } from "@/data/newTestimonials";
 import { fadeInUp } from "./shared";
+
+const combinedTestimonials = [...websiteTestimonials, ...newTestimonials];
 
 const WellnessHighlightsSection = () => {
   const [desktopIndex, setDesktopIndex] = useState(0);
   const [mobileIndex, setMobileIndex] = useState(0);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const maxDesktopIndex = Math.max(0, webinarTestimonials.length - 3);
-  const maxMobileIndex = Math.max(0, webinarTestimonials.length - 1);
+  const maxDesktopIndex = Math.max(0, combinedTestimonials.length - 3);
+  const maxMobileIndex = Math.max(0, combinedTestimonials.length - 1);
 
   const scrollTestimonialsDesktop = (direction: "left" | "right") => {
     setDesktopIndex((previous) => {
@@ -31,8 +34,8 @@ const WellnessHighlightsSection = () => {
     });
   };
 
-  const visibleDesktopTestimonials = webinarTestimonials.slice(desktopIndex, desktopIndex + 3);
-  const visibleMobileTestimonial = webinarTestimonials[mobileIndex];
+  const visibleDesktopTestimonials = combinedTestimonials.slice(desktopIndex, desktopIndex + 3);
+  const visibleMobileTestimonial = combinedTestimonials[mobileIndex];
 
   return (
     <div className="space-y-3 lg:space-y-2">
@@ -79,14 +82,17 @@ const WellnessHighlightsSection = () => {
         <div className="relative z-10 hidden grid-cols-3 gap-2 pb-1 pt-11 lg:grid xl:gap-3">
           {visibleDesktopTestimonials.map((testimonial) => (
             <article
-              key={`${desktopIndex}-${testimonial.name}-${testimonial.quote}`}
-              className="flex flex-1 items-center justify-center rounded-2xl border border-white/45 bg-white/[0.18] px-3 py-3 text-center shadow-[0_8px_24px_rgba(47,43,40,0.08)] backdrop-blur-[2.5px]"
+              key={`${desktopIndex}-${testimonial.name}-${testimonial.review}`}
+              className="flex h-[190px] flex-1 items-center justify-center rounded-2xl border border-white/45 bg-white/[0.18] px-3 py-3 text-center shadow-[0_8px_24px_rgba(47,43,40,0.08)] backdrop-blur-[2.5px]"
             >
-              <div>
-                <p className="mx-auto max-w-[14ch] font-serif text-[2rem] font-semibold leading-[1.1] italic text-[#2b2118] [text-shadow:0_1px_2px_rgba(255,255,255,0.4)] [text-wrap:balance]">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <p className="mt-2 font-serif text-[1.65rem] font-semibold leading-[1.08] italic text-[#2b2118] [text-shadow:0_1px_2px_rgba(255,255,255,0.35)]">
+              <div className="flex h-full w-full flex-col items-center">
+                <p className="mb-2 font-semibold tracking-wide text-[#2b2118]">★★★★★</p>
+                <div className="mx-auto max-h-[112px] flex-1 overflow-y-auto pr-2 [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#c7ccb9]">
+                  <p className="mx-auto max-w-[14ch] break-words font-serif text-[1.05rem] font-semibold leading-[1.15] italic text-[#2b2118] [text-shadow:0_1px_2px_rgba(255,255,255,0.4)] [text-wrap:balance]">
+                    &ldquo;{testimonial.review}&rdquo;
+                  </p>
+                </div>
+                <p className="mt-2 font-serif text-[0.95rem] font-semibold leading-[1.1] italic text-[#2b2118] [text-shadow:0_1px_2px_rgba(255,255,255,0.35)]">
                   - {testimonial.name}
                 </p>
               </div>
@@ -111,12 +117,15 @@ const WellnessHighlightsSection = () => {
         >
           <article
             key={`${mobileIndex}-${visibleMobileTestimonial.name}`}
-            className="mx-auto w-full max-w-[28rem] rounded-2xl border border-white/45 bg-white/[0.2] px-4 py-4 shadow-[0_8px_24px_rgba(47,43,40,0.08)] backdrop-blur-[2.5px]"
+            className="mx-auto h-auto max-h-[260px] w-full max-w-[28rem] rounded-2xl border border-white/45 bg-white/[0.2] px-4 py-4 shadow-[0_8px_24px_rgba(47,43,40,0.08)] backdrop-blur-[2.5px]"
           >
-            <p className="mx-auto max-w-[18ch] font-serif text-4xl font-semibold leading-[1.15] italic text-[#2b2118] [text-shadow:0_1px_2px_rgba(255,255,255,0.4)] [text-wrap:balance]">
-              &ldquo;{visibleMobileTestimonial.quote}&rdquo;
-            </p>
-            <p className="mt-3 font-serif text-3xl font-semibold leading-[1.1] italic text-[#2b2118] [text-shadow:0_1px_2px_rgba(255,255,255,0.35)]">
+            <p className="mb-2 font-semibold tracking-wide text-[#2b2118]">★★★★★</p>
+            <div className="mx-auto max-h-[145px] overflow-y-auto pr-2 [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#c7ccb9]">
+              <p className="mx-auto max-w-[20ch] break-words font-serif text-[1.35rem] font-semibold leading-[1.15] italic text-[#2b2118] [text-shadow:0_1px_2px_rgba(255,255,255,0.4)] [text-wrap:balance]">
+                &ldquo;{visibleMobileTestimonial.review}&rdquo;
+              </p>
+            </div>
+            <p className="mt-3 font-serif text-[1.15rem] font-semibold leading-[1.1] italic text-[#2b2118] [text-shadow:0_1px_2px_rgba(255,255,255,0.35)]">
               - {visibleMobileTestimonial.name}
             </p>
           </article>
