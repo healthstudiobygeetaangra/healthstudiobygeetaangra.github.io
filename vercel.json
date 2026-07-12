@@ -4,6 +4,13 @@
       "maxDuration": 10
     }
   },
+  "redirects": [
+    {
+      "source": "/assessment",
+      "destination": "https://docs.google.com/forms/d/e/1FAIpQLSevCnynE8nkXUfzOt-W662pRdu6RfXh-easWsaynuwIrwOsWQ/viewform",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
