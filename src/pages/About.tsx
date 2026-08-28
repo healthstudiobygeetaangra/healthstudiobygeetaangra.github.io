@@ -66,7 +66,7 @@ const About = () => {
                   Health Studio by Geeta Angra is a <span className="text-foreground font-medium">holistic nutrition and lifestyle wellness centre</span> dedicated to helping individuals improve their health through root-cause healing and sustainable lifestyle changes.
                 </p>
                 <p>
-                  The studio is led by <span className="text-foreground font-medium">Clinical Nutritionist Geeta Angra</span>, a Gut, Hormonal Health & Fat Loss Nutritionist and Certified Diabetic Educator, who believes that true health comes from understanding the body, not fighting it with extreme diets or temporary solutions.
+                  The Studio is led by <span className="text-foreground font-medium">Dr. (Hon.) Nt. Geeta Angra</span>, Clinical Nutritionist, Gut, Hormonal Health & Fat Loss Expert and Certified Diabetic Educator, who believes that true health comes from understanding the body, not fighting it with extreme diets or temporary solutions.
                 </p>
                 <p>
                   At Health Studio by Geeta Angra, the approach goes beyond calorie counting. We focus on <span className="text-primary font-medium">gut health, hormonal balance, metabolic health</span>, and daily lifestyle habits that influence weight, energy, digestion, blood sugar control, and overall well-being.
@@ -109,7 +109,7 @@ const About = () => {
                     "Our mission is to empower you with personalised nutrition plans, practical lifestyle guidance, and sustainable habits so you can heal from within and live a healthier, confident, and fear-free life."
                   </p>
                   <footer className="text-primary font-medium">
-                    — Geeta Angra & Team
+                    — Dr. (Hon.) Nt. Geeta Angra & Team
                   </footer>
                 </blockquote>
               </div>

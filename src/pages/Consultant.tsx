@@ -73,11 +73,10 @@ const Consultant = () => {
             </div>
             <div className="w-full md:w-3/5 text-center md:text-left">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2">
-                <span className="block text-left ml-10">Geeta Angra</span>
-                <span className="block text-left text-2xl md:text-3xl lg:text-4xl">(Clinical Nutritionist)</span>
+                <span className="block text-left ml-10">Dr. (Hon.) Nt. Geeta Angra</span>
               </h1>
               <p className="text-lg md:text-xl text-primary font-semibold mb-6 text-left">
-                Gut & Hormonal Health Nutritionist | Certified Diabetic Educator
+                Clinical Nutritionist | Gut Health | Hormonal Health | Fat Loss Expert | Holistic Health Coach | Certified Diabetic Educator
               </p>
               <blockquote className="text-lg md:text-xl text-muted-foreground italic mb-8 border-l-4 border-primary pl-4">
                 "Healing is not about restriction. It is about understanding your body and supporting it wisely."
@@ -109,7 +108,7 @@ const Consultant = () => {
             </h3>
             <div className="space-y-4 text-foreground leading-relaxed mb-8">
               <p>
-                I am a wellness professional with an academic background in B.Sc., B.Ed., and GNIIT, and advanced training in Gut Health, Hormonal Health, Ayurvedic & Modern Nutrition, Dietary Supplementation, and certified Diabetes Educator. I am also the founder of Health Studio by Geeta Angra, a space created for thoughtful, personalised, and sustainable healing.
+                I am an Honorary Doctorate holder and a <span className="font-semibold">Health and Wellness Educator</span> with an academic background in B.Sc., B.Ed., and GNIIT, and advanced training in Gut Health, Hormonal Health, Ayurvedic & Modern Nutrition, Dietary Supplementation, and certified Diabetes Educator. I am also the founder of Health Studio by Geeta Angra, a space created for thoughtful, personalised, and sustainable healing, on a mission — Let's Heal India.
               </p>
               <p>
                 My journey into nutrition began not as a career decision, but as a life experience.
