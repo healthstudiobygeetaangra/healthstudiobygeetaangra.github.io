@@ -19,4 +19,16 @@ export const newTestimonials: TestimonialItem[] = [
     review:
       "She is the best nutritionist in area... she does not only give diet plans... she works upon the root cause of the problem.",
   },
+  {
+    name: "Urvashi Valecha",
+    rating: 5,
+    review:
+      "I took the gut reset program, Ms. Geeta Angra is A knowledgeable and supportive dietitian who creates practical, sustainable meal plans. Highly recommend for anyone looking to build healthier eating habits!",
+  },
+  {
+    name: "Vrinda Chhabra",
+    rating: 5,
+    review:
+      "I had great experience with Geeta ji.. she help me figuring out my issue and we are working on it. I would recommend her as your health coach. Thankyou so much 🙏",
+  },
 ];
