@@ -13,6 +13,7 @@ import ContactUs from "./pages/ContactUs";
 import BookAppointment from "./pages/BookAppointment";
 import Plans from "./pages/Plans";
 import Certificates from "./pages/Certificates";
+import Achievements from "./pages/Achievements";
 import About from "./pages/About";
 import Testimonials from "./pages/Testimonials";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/book-appointment" element={<BookAppointment />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/certificates" element={<Certificates />} />
+          <Route path="/achievements" element={<Achievements />} />
           <Route path="/about" element={<About />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

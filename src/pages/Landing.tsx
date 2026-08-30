@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-wellness-new.png";
 import consultantPhoto from "@/assets/consultant-photo.jpg";
+import achievementMemento from "@/assets/achievements/ipac-memento.jpeg";
+import achievementTrophy from "@/assets/achievements/receiving-trophy.jpeg";
+import achievementCitation from "@/assets/achievements/honorary-doctorate-citation.jpeg";
 import { Heart, Target, Users, Award, Mail, Phone, MapPin, ArrowRight, Menu, Sparkles, Zap, Moon, Activity, Flame, Brain, Scale, Send, MessageCircle } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
@@ -511,6 +514,59 @@ const Landing = () => {
 
       {/* Clients Review Section */}
       <TestimonialsCarousel />
+
+      {/* Recognition Teaser */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto bg-background rounded-3xl border border-border shadow-soft px-6 py-12 md:px-10 md:py-14">
+            <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-12 items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary/10 rounded-full text-xs font-semibold tracking-wide uppercase text-primary mb-4">
+                  <Award className="w-3.5 h-3.5" />
+                  Recognition
+                </span>
+                <h3 className="font-playfair text-3xl md:text-4xl font-semibold text-foreground leading-tight mb-3">
+                  Honoured with the Iconic Honorary Doctorate Award
+                </h3>
+                <p className="text-muted-foreground leading-relaxed mb-6 max-w-md">
+                  Conferred by the Iconic Peace Award Council at the Emerging Achievers Awards,
+                  New Delhi — August 2026.
+                </p>
+                <Button
+                  onClick={() => navigate("/achievements")}
+                  className="rounded-full bg-gradient-wellness text-primary-foreground hover:opacity-95 gap-2"
+                >
+                  See Awards &amp; Achievements
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </div>
+              <div className="grid grid-cols-[1.4fr_1fr] grid-rows-2 gap-3.5 h-[300px] sm:h-[340px]">
+                <div className="row-span-2 rounded-2xl overflow-hidden bg-muted">
+                  <img
+                    src={achievementMemento}
+                    alt="Receiving the Iconic Peace Award Council memento"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="rounded-2xl overflow-hidden bg-muted">
+                  <img
+                    src={achievementTrophy}
+                    alt="Receiving the trophy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="rounded-2xl overflow-hidden bg-muted">
+                  <img
+                    src={achievementCitation}
+                    alt="Receiving the Honorary Doctorate citation"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-16 md:py-24">
