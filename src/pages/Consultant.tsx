@@ -3,6 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import consultantPhoto from "@/assets/consultant-photo.jpg";
+import honourFelicitation from "@/assets/achievements/felicitation-shawl.jpeg";
+import honourTrophy from "@/assets/achievements/receiving-trophy.jpeg";
+import honourCitation from "@/assets/achievements/honorary-doctorate-citation.jpeg";
+import honourHonourees from "@/assets/achievements/with-honourees.jpeg";
+import honourPress from "@/assets/achievements/press-interaction.jpeg";
 import { Award, BookOpen, Heart, Star, ArrowLeft, CheckCircle, Users, Calendar, X, Sparkles, MessageCircle, ArrowRight } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
@@ -73,11 +78,10 @@ const Consultant = () => {
             </div>
             <div className="w-full md:w-3/5 text-center md:text-left">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2">
-                <span className="block text-left ml-10">Geeta Angra</span>
-                <span className="block text-left text-2xl md:text-3xl lg:text-4xl">(Clinical Nutritionist)</span>
+                <span className="block text-left ml-10">Dr. (Hon.) Nt. Geeta Angra</span>
               </h1>
               <p className="text-lg md:text-xl text-primary font-semibold mb-6 text-left">
-                Gut & Hormonal Health Nutritionist | Certified Diabetic Educator
+                Clinical Nutritionist | Gut Health | Hormonal Health | Fat Loss Expert | Holistic Health Coach | Certified Diabetic Educator
               </p>
               <blockquote className="text-lg md:text-xl text-muted-foreground italic mb-8 border-l-4 border-primary pl-4">
                 "Healing is not about restriction. It is about understanding your body and supporting it wisely."
@@ -109,7 +113,7 @@ const Consultant = () => {
             </h3>
             <div className="space-y-4 text-foreground leading-relaxed mb-8">
               <p>
-                I am a wellness professional with an academic background in B.Sc., B.Ed., and GNIIT, and advanced training in Gut Health, Hormonal Health, Ayurvedic & Modern Nutrition, Dietary Supplementation, and certified Diabetes Educator. I am also the founder of Health Studio by Geeta Angra, a space created for thoughtful, personalised, and sustainable healing.
+                I am an Honorary Doctorate holder and a <span className="font-semibold">Health and Wellness Educator</span> with an academic background in B.Sc., B.Ed., and GNIIT, and advanced training in Gut Health, Hormonal Health, Ayurvedic & Modern Nutrition, Dietary Supplementation, and certified Diabetes Educator. I am also the founder of Health Studio by Geeta Angra, a space created for thoughtful, personalised, and sustainable healing, on a mission — Let's Heal India.
               </p>
               <p>
                 My journey into nutrition began not as a career decision, but as a life experience.
@@ -185,6 +189,69 @@ const Consultant = () => {
                   ))}
                 </ul>
               </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* HONOURS & RECOGNITION */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Card className="p-6 md:p-10 rounded-3xl shadow-soft">
+            <div className="text-center mb-8">
+              <h3 className="font-playfair text-2xl md:text-3xl font-semibold text-foreground mb-3">
+                Honours &amp; Recognition
+              </h3>
+              <div className="w-20 h-[3px] rounded-full mx-auto bg-gradient-wellness" />
+            </div>
+
+            <div className="grid md:grid-cols-[280px_1fr] gap-6 md:gap-8 items-center bg-background border border-border rounded-3xl p-5 md:p-6 mb-6">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
+                <img
+                  src={honourFelicitation}
+                  alt="Felicitation with the ceremonial shawl"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col gap-2.5">
+                <span className="self-start px-3 py-1 rounded-full bg-secondary/35 text-secondary-foreground text-[11px] font-bold tracking-wide uppercase">
+                  August 2026
+                </span>
+                <h4 className="font-playfair text-xl md:text-2xl font-semibold text-foreground">
+                  Iconic Honorary Doctorate Award
+                </h4>
+                <p className="text-sm font-semibold text-primary">
+                  Iconic Peace Award Council · Emerging Achievers Awards
+                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Presented at the Constitution Club of India, New Delhi, for work in gut, hormonal
+                  and metabolic health.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+              {[
+                { src: honourTrophy, alt: "Receiving the trophy" },
+                { src: honourCitation, alt: "Receiving the citation" },
+                { src: honourHonourees, alt: "With fellow honourees" },
+                { src: honourPress, alt: "Press interaction after the ceremony" },
+              ].map((shot) => (
+                <div key={shot.alt} className="aspect-square rounded-2xl overflow-hidden bg-muted">
+                  <img src={shot.src} alt={shot.alt} className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-6">
+              <Button
+                variant="outline"
+                onClick={() => navigate("/achievements")}
+                className="rounded-full gap-2 hover:border-primary hover:text-primary"
+              >
+                View all achievements
+                <ArrowRight className="h-4 w-4" />
+              </Button>
             </div>
           </Card>
         </div>

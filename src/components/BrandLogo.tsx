@@ -13,7 +13,7 @@ const BrandLogo = ({ sizeClassName = "h-10 md:h-[60px]", className = "" }: Brand
       }}
     >
       <img
-        src="/logo.png"
+        src="/main-site-logo.jpeg"
         alt="Health Studio by Geeta Angra"
         className="w-full h-full rounded-full"
         style={{ objectFit: "contain" }}

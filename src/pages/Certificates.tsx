@@ -17,6 +17,9 @@ import fssaiAnnexure from "@/assets/certificates/fssai-annexure.jpeg";
 import lifestyleHealthCoaching from "@/assets/certificates/lifestyle-health-coaching.jpeg";
 import diabeticNutritionCertificate from "@/assets/certificates/Diabetic_Nutrition_certificate.jpeg";
 import healIndiaUpdated from "@/assets/certificates/heal-india-updated.jpeg";
+import holisticNutritionBusinessSkill from "@/assets/certificates/holistic-nutrition-business-skill.png";
+import iconicPeaceMembership from "@/assets/certificates/iconic-peace-membership.png";
+import honoraryDoctorateAward from "@/assets/certificates/honorary-doctorate-award.png";
 
 interface Certificate {
   id: number;
@@ -114,6 +117,30 @@ const certificates: Certificate[] = [
     issuer: "Skill India",
     date: "February 2026",
     image: healIndiaUpdated,
+    category: "health",
+  },
+  {
+    id: 12,
+    title: "Certificate in Holistic Nutrition & Business Skill Program",
+    issuer: "Scope Global Skills University",
+    date: "May 2026",
+    image: holisticNutritionBusinessSkill,
+    category: "nutrition",
+  },
+  {
+    id: 13,
+    title: "Certificate of Membership",
+    issuer: "Iconic Peace Award Council",
+    date: "July 2026",
+    image: iconicPeaceMembership,
+    category: "health",
+  },
+  {
+    id: 14,
+    title: "Honorary Doctorate Award",
+    issuer: "Iconic Peace Award Council",
+    date: "July 2026",
+    image: honoraryDoctorateAward,
     category: "health",
   },
 ];
