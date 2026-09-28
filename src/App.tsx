@@ -22,6 +22,7 @@ import Disclaimer from "./pages/Disclaimer";
 import RefundPolicy from "./pages/RefundPolicy";
 import FatLossProgram from "./pages/FatLossProgram";
 import GutResetProgram from "./pages/GutResetProgram";
+import OneOnOneConsultation from "./pages/OneOnOneConsultation";
 import GutResetWebinar from "./pages/GutResetWebinar";
 import GutResetWebinarEnroll from "./pages/GutResetWebinarEnroll";
 import GutResetWebinarSuccess from "./pages/GutResetWebinarSuccess";
@@ -55,6 +56,7 @@ const App = () => (
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/fat-loss-program" element={<FatLossProgram />} />
           <Route path="/gut-reset-program" element={<GutResetProgram />} />
+          <Route path="/one-on-one-consultation" element={<OneOnOneConsultation />} />
           <Route path="/gut-reset-webinar" element={<GutResetWebinar />} />
           <Route path="/gut-reset-webinar/enroll" element={<GutResetWebinarEnroll />} />
           <Route path="/gut-reset-webinar/payment" element={<GutResetWebinarEnroll />} />
